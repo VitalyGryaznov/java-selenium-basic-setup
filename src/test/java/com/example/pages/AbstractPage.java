@@ -12,6 +12,7 @@ import java.time.Duration;
 public abstract class AbstractPage {
     protected WebDriver driver;
     protected WebDriverWait wait;
+    private final int globalTimeout = 15;
 
     public AbstractPage(WebDriver driver) {
         this.driver = driver;
@@ -19,13 +20,12 @@ public abstract class AbstractPage {
         PageFactory.initElements(driver, this);
     }
 
-    protected void clickElement(By locator) {
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
-        wait.until(ExpectedConditions.elementToBeClickable(element)).click();
+    protected void waitForClickabilityAndClickOn(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+        element.click();
     }
 
-    protected void fillElementWithValue(By locator, String value) {
-        WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    protected void fillElementWithValue(WebElement element, String value) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
         element.clear();
         element.sendKeys(value);

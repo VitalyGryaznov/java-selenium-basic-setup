@@ -9,6 +9,7 @@ public class LoginTest extends AbstractTest {
     @Test
     public void userCanLoginFromHomePage() {
         HomePage homePage = HomePage.openViaUrl(driver);
+        homePage.submitCookies();
 
         HeaderComponent headerComponent = new HeaderComponent(driver);
         headerComponent.verifyComponentLoaded();

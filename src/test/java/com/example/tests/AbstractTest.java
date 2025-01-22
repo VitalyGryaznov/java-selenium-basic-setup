@@ -22,6 +22,7 @@ public abstract class AbstractTest implements TestExecutionExceptionHandler {
     @BeforeEach
     public void setUp() {
         configureDriver();
+
     }
 
     private void configureDriver() {

@@ -9,6 +9,11 @@ public class HomePage extends AbstractPage {
     @FindBy(css = ".block-promo.home-main")
     private WebElement homePagePromo;
 
+    @FindBy(css = " .qc-cmp2-summary-buttons [mode=primary]")
+    private WebElement submitCookies;
+
+
+
     public HomePage(WebDriver driver) {
         super(driver);
     }
@@ -18,6 +23,10 @@ public class HomePage extends AbstractPage {
         HomePage homePage = new HomePage(driver);
         homePage.verifyPageLoaded();
         return homePage;
+    }
+
+    public void submitCookies() {
+        waitForClickabilityAndClickOn(submitCookies);
     }
 
     public void verifyPageLoaded() {
